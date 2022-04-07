@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,11 +15,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'admin',
-            'email' => 'admin@admin.com',
-            'is_admin' => true,
-            'password' => bcrypt('password'),
-        ]);
+       $admin =  User::factory()->count(1)->isAdmin()->create();
+       $rest = User::factory()->count(4)->create();
     }
 }
